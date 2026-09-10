@@ -390,7 +390,7 @@ const Dashboard = () => {
         {/* Main Body - ONLY THIS SCROLLS */}
         <main className="flex-1 min-w-0 overflow-y-auto mb-30">
           <div className="mb-8"></div>
-          <div className="h-12 bg-red-200"></div>
+          <div className="h-12"></div>
           {searchQuery && filteredSymptoms.length === 0 && (
             <div className="w-full bg-white p-8 text-center shadow-md">
               <p className="text-lg font-semibold text-gray-700">
