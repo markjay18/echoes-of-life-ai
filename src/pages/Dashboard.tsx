@@ -151,15 +151,23 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const filteredSymptoms = symptoms.filter((symptom) => {
-    const keywordQuery = searchQuery.trim().toLowerCase();
-
-    if (!keywordQuery) return true;
-
-    return symptom.keywords?.some((keyword: string) =>
-      keyword.toLowerCase().includes(keywordQuery),
-    );
-  });
+   const normalizeText = (text: string): string => {
+      return text
+        .toLowerCase()
+        .replace(/[?!.,;:'"]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    };
+  
+    const filteredSymptoms = symptoms.filter((symptom) => {
+      const keywordQuery = normalizeText(searchQuery);
+  
+      if (!keywordQuery) return true;
+  
+      return symptom.keywords?.some((keyword: string) =>
+        normalizeText(keyword).includes(keywordQuery),
+      );
+    });
 
   const handleGenerate = async () => {
     const query = searchTerm.trim();
