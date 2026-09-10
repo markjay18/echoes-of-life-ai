@@ -10,6 +10,8 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Default page */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route element={<MainLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
